@@ -9,7 +9,7 @@ services:
     ports:
     - 9092:9092
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka1
+      KAFKA_ADVERTISED_HOST_NAME: kafka1 //宿主机ip
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
     volumes:
@@ -19,7 +19,7 @@ services:
     - zookeeper2
     - zookeeper3
     networks:
-      br17219:
+      default:
         ipv4_address: 172.19.0.14
 
   kafka2:
@@ -28,9 +28,9 @@ services:
     hostname: kafka2
     container_name: kafka2
     ports:
-    - 9093:9093
+    - 9093:9092
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka2
+      KAFKA_ADVERTISED_HOST_NAME: kafka2 //宿主机IP
       KAFKA_ADVERTISED_PORT: 9093
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
     volumes:
@@ -40,7 +40,7 @@ services:
     - zookeeper2
     - zookeeper3
     networks:
-      br17219:
+      default:
         ipv4_address: 172.19.0.15
 
   kafka3:
@@ -49,9 +49,9 @@ services:
     hostname: kafka3
     container_name: kafka3
     ports:
-    - 9094:9094
+    - 9094:9092
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka3
+      KAFKA_ADVERTISED_HOST_NAME: kafka3 //宿主机IP
       KAFKA_ADVERTISED_PORT: 9094
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
     volumes:
@@ -61,10 +61,10 @@ services:
     - zookeeper2
     - zookeeper3
     networks:
-      br17219:
+      default:
         ipv4_address: 172.19.0.16
 
 networks:
-  br17219:
+  default:
     external:
-      name: br17219
+      name: zookeeper_network
