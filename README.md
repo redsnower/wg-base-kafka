@@ -1,4 +1,14 @@
 # wg-base-kafka
+
+|    hostName     | IP       | port   | listener |
+| -----------     | -------- | ------ | ------  |
+| zookeeper1 | 172.19.0.11 | 2184:2181 |  | 
+| zookeeper1 | 172.19.0.12 | 2185:2181 |  | 
+| zookeeper1 | 172.19.0.13 | 2186:2181 |  | 
+| kafka1 | 172.19.0.14 | 9092:9092 | kafka1 | 
+| kafka2 | 172.19.0.15 | 9093:9093 | kafka2 | 
+| kafka3 | 172.19.0.16 | 9093:9093 | kafka3 | 
+
 ```
 1.docker network ls
 2.docker network create --driver bridge --subnet 172.19.0.0/16 br17219
