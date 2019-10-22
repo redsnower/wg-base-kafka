@@ -1,0 +1,58 @@
+version: '3.4'
+
+services:
+  zookeeper1:
+    image: wurstmeister/zookeeper
+    restart: always
+    hostname: zookeeper1
+    container_name: zookeeper1
+    ports:
+    - 2184:2181
+    volumes:
+    - "/e/cluster/zookeeper/zoo1/data:/data"
+    - "/e/cluster/zookeeper/zoo1/datalog:/datalog"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      br17219:
+        ipv4_address: 172.19.0.11
+
+  zookeeper2:
+    image: wurstmeister/zookeeper
+    restart: always
+    hostname: zookeeper2
+    container_name: zookeeper2
+    ports:
+    - 2185:2181
+    volumes:
+    - "/e/cluster/zookeeper/zoo2/data:/data"
+    - "/e/cluster/zookeeper/zoo2/datalog:/datalog"
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      br17219:
+        ipv4_address: 172.19.0.12
+
+  zookeeper3:
+    image: wurstmeister/zookeeper
+    restart: always
+    hostname: zookeeper3
+    container_name: zookeeper3
+    ports:
+    - 2186:2181
+    volumes:
+    - "/e/cluster/zookeeper/zoo3/data:/data"
+    - "/e/cluster/zookeeper/zoo3/datalog:/datalog"
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888
+    networks:
+      br17219:
+        ipv4_address: 172.19.0.13
+
+networks:
+  br17219:
+    external:
+      name: br172191
