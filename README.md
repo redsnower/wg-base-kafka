@@ -23,7 +23,6 @@
 ##### cluster
 - docker network
 ```
-
 1. docker network ls
 2. docker network create --driver bridge --subnet 172.19.0.0/16 --gateway 172.19.0.1 zookeeper_network
 3. docker nerwork inspect  zookeeper_network
