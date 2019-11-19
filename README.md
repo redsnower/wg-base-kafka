@@ -31,6 +31,7 @@
 - topic
 ```
 5. docker exec -ti kafka1 bash  (windows: winpty docker exec -it d437 bash) 
+   cd opt/kafka/bin
 6. ./kafka-topics.sh --create --zookeeper localhost:2184,localhost:2185,localhost:2186 --replication-factor 1 --partitions 1 --topic wg_base_message
    //localhost 改为宿主机IP
   ./kafka-topics.sh --create --zookeeper 10.4.137.102:2184,10.4.137.102:2185,10.4.137.102:2186 --replication-factor 1 --partitions 1 --topic wg_base_message
